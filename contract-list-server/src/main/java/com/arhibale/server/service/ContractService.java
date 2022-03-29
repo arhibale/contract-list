@@ -1,9 +1,9 @@
-package com.arhibale.contractlistserver.service;
+package com.arhibale.server.service;
 
-import com.arhibale.contractlistserver.entity.Contract;
-import com.arhibale.contractlistserver.exception.ContractNotFoundException;
-import com.arhibale.contractlistserver.repository.ContractRepository;
-import com.arhibale.contractlistserver.util.ServerTime;
+import com.arhibale.server.entity.Contract;
+import com.arhibale.server.exception.ContractNotFoundException;
+import com.arhibale.server.repository.ContractRepository;
+import com.arhibale.server.util.ServerTime;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.arhibale.contractlistserver.util;
+package com.arhibale.server.util;
 
 import java.time.Clock;
 import java.time.LocalDateTime;

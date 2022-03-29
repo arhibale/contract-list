@@ -1,11 +1,9 @@
-package com.arhibale.contractlistserver.entity;
+package com.arhibale.server.entity;
 
-import com.arhibale.contractlistserver.util.ServerTime;
+import com.arhibale.server.util.ServerTime;
 
 import javax.persistence.*;
-import java.time.Clock;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Objects;
 
 @Entity
@@ -64,6 +62,16 @@ public class Contract {
     public Contract setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "id=" + id +
+                ", date=" + date +
+                ", contractNumber=" + contractNumber +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
 
     @Override

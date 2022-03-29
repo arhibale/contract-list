@@ -1,6 +1,6 @@
-package com.arhibale.contractlistserver.repository;
+package com.arhibale.server.repository;
 
-import com.arhibale.contractlistserver.entity.Contract;
+import com.arhibale.server.entity.Contract;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

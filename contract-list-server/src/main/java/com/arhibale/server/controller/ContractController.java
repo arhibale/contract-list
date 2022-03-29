@@ -1,7 +1,7 @@
-package com.arhibale.contractlistserver.controller;
+package com.arhibale.server.controller;
 
-import com.arhibale.contractlistserver.entity.Contract;
-import com.arhibale.contractlistserver.service.ContractService;
+import com.arhibale.server.entity.Contract;
+import com.arhibale.server.service.ContractService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

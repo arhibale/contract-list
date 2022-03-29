@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.arhibale.contractlistclient/com.arhibale.contractlistclient.HelloApplication
+                                com.arhibale.contractlistclient/com.arhibale.client.ContractsListApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

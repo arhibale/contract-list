@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arhibale.client.controller.ContractListController">
+   <MenuBar prefHeight="0.0" prefWidth="602.0">
+      <Menu mnemonicParsing="false" text="File">
+         <MenuItem mnemonicParsing="false" onAction="#onRefresh" text="Refresh" />
+      </Menu>
+   </MenuBar>
+   <TableView fx:id="contractTable" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT">
+      <columns>
+         <TableColumn fx:id="idColumn" editable="false" prefWidth="75.0" text="ID" />
+         <TableColumn fx:id="dateColumn" editable="false" prefWidth="149.0" text="DATE" />
+         <TableColumn fx:id="numberColumn" editable="false" prefWidth="149.0" text="NUMBER" />
+         <TableColumn fx:id="updateColumn" editable="false" prefWidth="149.0" text="LAST UPDATE" />
+         <TableColumn fx:id="relevanceColumn" editable="false" text="RELEVANCE" />
+      </columns></TableView>
+</VBox>

@@ -3,6 +3,8 @@ module com.arhibale.contractlistclient {
     requires javafx.fxml;
 
 
-    opens com.arhibale.contractlistclient to javafx.fxml;
-    exports com.arhibale.contractlistclient;
+    opens com.arhibale.client to javafx.fxml;
+    opens com.arhibale.client.controller to javafx.fxml;
+    opens com.arhibale.client.dto to javafx.base;
+    exports com.arhibale.client;
 }
