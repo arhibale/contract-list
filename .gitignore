@@ -1,0 +1,4 @@
+# Project exclude paths
+/contract-list-client/target/
+/.idea/
+/contract-list-server/.mvn/
