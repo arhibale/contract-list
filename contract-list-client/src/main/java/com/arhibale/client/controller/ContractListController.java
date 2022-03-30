@@ -1,6 +1,9 @@
 package com.arhibale.client.controller;
 
 import com.arhibale.client.dto.ContractDto;
+import com.arhibale.client.util.deserializer.ContractDeserializer;
+import com.arhibale.client.util.http.HttpConnect;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,10 +15,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ContractListController implements Initializable {
-    private final ObservableList<ContractDto> contractsOList = FXCollections.observableArrayList();
+    private ObservableList<ContractDto> contractsOList;
+    private HttpConnect httpConnect;
 
     @FXML
     private TableView<ContractDto> contractTable;
@@ -33,18 +38,26 @@ public class ContractListController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        contractsOList = FXCollections.observableArrayList();
+        httpConnect = new HttpConnect();
+
         initData();
         initColumn();
     }
 
     private void initData() {
-        ContractDto contractDto = new ContractDto()
-                .setId(1L)
-                .setDate(LocalDateTime.now())
-                .setContractNumber(228)
-                .setLastUpdate(LocalDateTime.now())
-                .setRelevance(true);
-        contractsOList.add(contractDto);
+        List<ContractDto> list = httpConnect.getListContracts();
+        if (list == null) {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Список контрактов");
+                alert.setHeaderText("Список контрактов пуст");
+                alert.setContentText("Ошибка при получении данных");
+                alert.show();
+            });
+        } else {
+            contractsOList.addAll(list);
+        }
     }
 
     private void initColumn() {
@@ -59,6 +72,7 @@ public class ContractListController implements Initializable {
 
     @FXML
     private void onRefresh(ActionEvent actionEvent) {
-
+        contractsOList.clear();
+        initData();
     }
 }

@@ -12,17 +12,7 @@ public class ContractDto {
     private LocalDateTime lastUpdate;
     private SimpleBooleanProperty relevance;
 
-    public ContractDto() {
-        relevance = new SimpleBooleanProperty(false);
-    }
-
-    public ContractDto(Long id, LocalDateTime date, Integer contractNumber, LocalDateTime lastUpdate) {
-        this.id = id;
-        this.date = date;
-        this.contractNumber = contractNumber;
-        this.lastUpdate = lastUpdate;
-        relevance = new SimpleBooleanProperty(false);
-    }
+    public ContractDto() { }
 
     @Override
     public boolean equals(Object o) {
@@ -70,6 +60,13 @@ public class ContractDto {
 
     public ContractDto setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
+
+        if (LocalDateTime.now().minusDays(60).isBefore(lastUpdate)) {
+            relevance = new SimpleBooleanProperty(true);
+        } else {
+            relevance = new SimpleBooleanProperty(false);
+        }
+
         return this;
     }
 
