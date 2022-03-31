@@ -10,7 +10,7 @@ public class ContractDto {
     private LocalDateTime date;
     private Integer contractNumber;
     private LocalDateTime lastUpdate;
-    private SimpleBooleanProperty relevance;
+    private final SimpleBooleanProperty relevance;
 
     public ContractDto() {
         relevance = new SimpleBooleanProperty(false);
@@ -50,9 +50,7 @@ public class ContractDto {
     public ContractDto setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
 
-        if (LocalDateTime.now().minusDays(60).isBefore(lastUpdate)) {
-            relevance.set(true);
-        }
+        relevance.set(LocalDateTime.now().minusDays(60).isBefore(lastUpdate));
 
         return this;
     }
