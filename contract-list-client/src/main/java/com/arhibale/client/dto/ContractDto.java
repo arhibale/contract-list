@@ -12,19 +12,8 @@ public class ContractDto {
     private LocalDateTime lastUpdate;
     private SimpleBooleanProperty relevance;
 
-    public ContractDto() { }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ContractDto that = (ContractDto) o;
-        return id.equals(that.id) && date.equals(that.date) && contractNumber.equals(that.contractNumber) && lastUpdate.equals(that.lastUpdate) && relevance.equals(that.relevance);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, date, contractNumber, lastUpdate, relevance);
+    public ContractDto() {
+        relevance = new SimpleBooleanProperty(false);
     }
 
     public Long getId() {
@@ -62,9 +51,7 @@ public class ContractDto {
         this.lastUpdate = lastUpdate;
 
         if (LocalDateTime.now().minusDays(60).isBefore(lastUpdate)) {
-            relevance = new SimpleBooleanProperty(true);
-        } else {
-            relevance = new SimpleBooleanProperty(false);
+            relevance.set(true);
         }
 
         return this;
@@ -81,5 +68,18 @@ public class ContractDto {
     public ContractDto setRelevance(boolean relevance) {
         this.relevance.set(relevance);
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContractDto that = (ContractDto) o;
+        return id.equals(that.id) && date.equals(that.date) && contractNumber.equals(that.contractNumber) && lastUpdate.equals(that.lastUpdate) && relevance.equals(that.relevance);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, date, contractNumber, lastUpdate, relevance);
     }
 }

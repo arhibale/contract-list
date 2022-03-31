@@ -1,12 +1,10 @@
 package com.arhibale.client.controller;
 
 import com.arhibale.client.dto.ContractDto;
-import com.arhibale.client.util.deserializer.ContractDeserializer;
-import com.arhibale.client.util.http.HttpConnect;
+import com.arhibale.client.http.HttpConnect;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -46,7 +44,7 @@ public class ContractListController implements Initializable {
     }
 
     private void initData() {
-        List<ContractDto> list = httpConnect.getListContracts();
+        List<ContractDto> list = httpConnect.getResponseForList();
         if (list == null) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -71,8 +69,13 @@ public class ContractListController implements Initializable {
     }
 
     @FXML
-    private void onRefresh(ActionEvent actionEvent) {
+    private void onRefresh() {
         contractsOList.clear();
         initData();
+    }
+
+    @FXML
+    private void onExit() {
+        Platform.exit();
     }
 }

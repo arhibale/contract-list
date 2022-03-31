@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ContractDeserializer {
@@ -18,8 +19,6 @@ public class ContractDeserializer {
     }
 
     public List<ContractDto> getList(String json) throws JsonProcessingException {
-        return mapper.readValue(
-                json, mapper.getTypeFactory().constructCollectionType(List.class, ContractDto.class)
-        );
+        return Arrays.asList(mapper.readValue(json, ContractDto[].class));
     }
 }
