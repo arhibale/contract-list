@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class ContractsListApplication extends Application {
+public class ClientApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stage.setScene(new Scene(

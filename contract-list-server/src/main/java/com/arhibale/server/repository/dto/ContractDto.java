@@ -1,38 +1,20 @@
-package com.arhibale.server.entity;
+package com.arhibale.server.repository.dto;
 
-import com.arhibale.server.util.ServerTime;
-
-import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity
-@Table(name = "contract")
-public class Contract {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+public class ContractDto implements Serializable {
     private Long id;
-
-    @Column(name = "date", nullable = false)
     private LocalDateTime date;
-
-    @Column(name = "contract_number", nullable = false)
     private Integer contractNumber;
-
-    @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
-
-    @PrePersist
-    private void init() {
-        date = ServerTime.getServerTime();
-    }
 
     public Long getId() {
         return id;
     }
 
-    public Contract setId(Long id) {
+    public ContractDto setId(Long id) {
         this.id = id;
         return this;
     }
@@ -41,7 +23,7 @@ public class Contract {
         return date;
     }
 
-    public Contract setDate(LocalDateTime date) {
+    public ContractDto setDate(LocalDateTime date) {
         this.date = date;
         return this;
     }
@@ -50,7 +32,7 @@ public class Contract {
         return contractNumber;
     }
 
-    public Contract setContractNumber(Integer contractNumber) {
+    public ContractDto setContractNumber(Integer contractNumber) {
         this.contractNumber = contractNumber;
         return this;
     }
@@ -59,7 +41,7 @@ public class Contract {
         return lastUpdate;
     }
 
-    public Contract setLastUpdate(LocalDateTime lastUpdate) {
+    public ContractDto setLastUpdate(LocalDateTime lastUpdate) {
         this.lastUpdate = lastUpdate;
         return this;
     }
@@ -68,12 +50,22 @@ public class Contract {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Contract contract = (Contract) o;
-        return id.equals(contract.id) && date.equals(contract.date) && contractNumber.equals(contract.contractNumber) && lastUpdate.equals(contract.lastUpdate);
+        ContractDto that = (ContractDto) o;
+        return id.equals(that.id) && date.equals(that.date) && contractNumber.equals(that.contractNumber) && lastUpdate.equals(that.lastUpdate);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, date, contractNumber, lastUpdate);
+    }
+
+    @Override
+    public String toString() {
+        return "ContractDto{" +
+                "id=" + id +
+                ", date=" + date +
+                ", contractNumber=" + contractNumber +
+                ", lastUpdate=" + lastUpdate +
+                '}';
     }
 }
